@@ -1,10 +1,33 @@
 plugins {
     kotlin("jvm") version "2.1.10"
     id ("com.gradleup.shadow") version "8.3.3"
+    `maven-publish`
 }
 
 group = "com.creepyx.creepyktbase"
 version = properties["version.project"] as String
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/CreepyX-Dev/CreeepyBase")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR") ?: findProperty("gpr.user") as String?
+                password = System.getenv("GITHUB_TOKEN") ?: findProperty("gpr.key") as String?
+            }
+//            authentication {
+//                header(HttpHeaderAuthentication)
+//            }
+        }
+    }
+    publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+//            artifact(tasks.named("sourcesJar").get())
+        }
+    }
+}
 
 repositories {
     mavenCentral()
