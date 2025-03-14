@@ -64,8 +64,9 @@ class Config : YamlConfiguration {
         return super.getString(path)
     }
 
-    fun getString(path: String, def: String): String {
-        return super.getString(path, def)!!
+    @JvmName("getStringWithFallback")
+    fun getString(path: String, default: String): String {
+        return super.getString(path, default)!!
     }
 
     override fun set(path: String, value: Any?) {

@@ -1,7 +1,5 @@
 plugins {
     kotlin("jvm") version "2.1.10"
-    id("xyz.jpenilla.run-paper") version "1.1.0"
-    id("net.minecrell.plugin-yml.paper") version "0.6.0"
     id ("com.gradleup.shadow") version "8.3.3"
 }
 
