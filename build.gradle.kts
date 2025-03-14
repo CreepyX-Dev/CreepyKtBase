@@ -7,6 +7,13 @@ plugins {
 group = "com.creepyx.creepyktbase"
 version = properties["version.project"] as String
 
+tasks {
+    register("sourceJar", Jar::class) {
+        archiveClassifier.set("sources")
+        from(sourceSets.main.get().allSource)
+    }
+}
+
 publishing {
     repositories {
         maven {
